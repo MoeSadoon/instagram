@@ -4,8 +4,16 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
-  def self.build_with_user(params, user)
-    self.new(description: params['description'], user_id: user.id)
+  # def self.build_with_user(params, user)
+  #   post = self.new(params, user_id: user.id)
+  # end
+
+  def destroy_for_user(post)
+    if post.user_id == current_user.id
+      post.destroy
+      return true
+    end
+    false
   end
 
 end

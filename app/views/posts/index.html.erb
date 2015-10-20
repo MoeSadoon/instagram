@@ -2,7 +2,7 @@
 <% if @posts.any? %>
   <% @posts.each do |post| %>
     <h2> <%= post.description %> </h2>
-         <%= image_tag(post.image.url(:thumb)) %>
+         <%= image_tag post.image.url('medium') %>
 
 
     <% if current_user && post.user_id == current_user.id %>
